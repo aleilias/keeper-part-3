@@ -15,11 +15,14 @@ function CreateArea(props) {
 
   function submit(event) {
     event.preventDefault();
+
+    props.onAdd(note);
+    setNote({ title: "", content: "" });
   }
 
   return (
     <div>
-      <form onSubmit={submit}>
+      <form>
         <input
           onChange={handleChange}
           name="title"
@@ -33,15 +36,7 @@ function CreateArea(props) {
           rows="3"
           value={note.content}
         />
-        <button
-          onClick={() => {
-            console.log("hmmm");
-            props.onAdd(note);
-            setNote({ title: "", content: "" });
-          }}
-        >
-          Add
-        </button>
+        <button onClick={submit}>Add</button>
       </form>
     </div>
   );
